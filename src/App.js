@@ -17,7 +17,11 @@ function App() {
   const [dice, setDice] = useState(allNewDice());
 
   const dieElements = dice.map(die => <Die value={die} />);
-  
+
+  const rollDice = () => {
+    setDice(allNewDice());
+  }
+
   return (
     <main>
       {/* <h1>Tenzies</h1>
@@ -27,6 +31,7 @@ function App() {
       <div className="dice-container">
           {dieElements}
       </div>
+      <button className="roll-dice" onClick={rollDice}>Roll</button>
     </main>
   )
   }
