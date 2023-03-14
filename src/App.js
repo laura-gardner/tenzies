@@ -15,8 +15,9 @@ function App() {
     }
 
   const [dice, setDice] = useState(allNewDice());
-  console.log(dice);
 
+  const dieElements = dice.map(die => <Die value={die} />);
+  
   return (
     <main>
       {/* <h1>Tenzies</h1>
@@ -24,16 +25,7 @@ function App() {
         Roll until all dice are the same.  Click each die to freeze it at its current value between rolls.
       </p> */}
       <div className="dice-container">
-          <Die value="1"/>
-          <Die value="1"/>
-          <Die value="1"/>
-          <Die value="1"/>
-          <Die value="1"/>
-          <Die value="1"/>
-          <Die value="1"/>
-          <Die value="1"/>
-          <Die value="1"/>
-          <Die value="1"/>
+          {dieElements}
       </div>
     </main>
   )
