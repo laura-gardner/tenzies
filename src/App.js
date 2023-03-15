@@ -12,7 +12,7 @@ function App() {
     for (let i=0; i<10; i++) {
       diceArray.push({
         value: Math.ceil(Math.random()*6), 
-        isHeld: false,
+        isHeld: true,
         id: nanoid()
       })
     }
@@ -21,7 +21,9 @@ function App() {
 
   const [dice, setDice] = useState(allNewDice());
 
-  const dieElements = dice.map(die => <Die value={die.value} />);
+  const dieElements = dice.map(
+    die => <Die value={die.value} isHeld={die.isHeld} key={die.id}/>
+    );
 
   const rollDice = () => {
     setDice(allNewDice());
