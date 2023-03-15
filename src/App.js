@@ -28,7 +28,7 @@ function App() {
   const rollDice = () => {
     setDice(allNewDice());
   }
-  console.log(dice);
+  console.log(dieElements);
 
   return (
     <main>

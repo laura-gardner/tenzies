@@ -60,10 +60,6 @@ p {
   cursor: pointer;
 }
 
-.die-held {
-  background-color: seagreen;
-}
-
 .die-num {
   font-family: 'Karla', sans-serif;
   font-weight: 700;
