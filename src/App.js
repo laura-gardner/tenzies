@@ -8,14 +8,18 @@ import Die from "./Die";
 
 function App() {
 
+  const generateNewDie = () => {
+    return {
+      value: Math.ceil(Math.random()*6), 
+      isHeld: false,
+      id: nanoid()
+    }
+  }   
+
   const allNewDice = () => {
     const diceArray = [];
     for (let i=0; i<10; i++) {
-      diceArray.push({
-        value: Math.ceil(Math.random()*6), 
-        isHeld: false,
-        id: nanoid()
-      })
+      diceArray.push(generateNewDie())
     }
     return diceArray;
     }
@@ -31,7 +35,10 @@ function App() {
   }
 
   const rollDice = () => {
-    setDice(allNewDice());
+    setDice(oldDice => oldDice.map(die => {
+      return die.isHeld === true ?
+      die : generateNewDie()
+    }))
   }
   
   const dieElements = dice.map(die => (
@@ -40,10 +47,10 @@ function App() {
 
   return (
     <main>
-      {/* <h1>Tenzies</h1>
-      <p>
+      <h1 className="title">Tenzies</h1>
+      <p className="instructions">
         Roll until all dice are the same.  Click each die to freeze it at its current value between rolls.
-      </p> */}
+      </p>
       <div className="dice-container">
           {dieElements}
       </div>
