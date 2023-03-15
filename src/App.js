@@ -7,28 +7,36 @@ import Die from "./Die";
 
 
 function App() {
+
   const allNewDice = () => {
     const diceArray = [];
     for (let i=0; i<10; i++) {
       diceArray.push({
         value: Math.ceil(Math.random()*6), 
-        isHeld: true,
+        isHeld: false,
         id: nanoid()
       })
     }
     return diceArray;
     }
-
+  
   const [dice, setDice] = useState(allNewDice());
 
-  const dieElements = dice.map(
-    die => <Die value={die.value} isHeld={die.isHeld} key={die.id}/>
-    );
+  const holdDice = (id) => {
+    setDice(oldDice => oldDice.map(die => {
+      return die.id === id ? 
+      {...die, isHeld: !die.isHeld} :
+      die
+    }))
+  }
 
   const rollDice = () => {
     setDice(allNewDice());
   }
-  console.log(dieElements);
+  
+  const dieElements = dice.map(die => (
+    <Die key={die.id} value={die.value} isHeld={die.isHeld} id={die.id} holdDice={() => holdDice(die.id)}/>
+    ));
 
   return (
     <main>
